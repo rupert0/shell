@@ -18,7 +18,7 @@
 #                for open ports or running multiple scans in parallel to speed the 
 #                scanning process up would both be neat refinements. 
 #                
-#                 Invoke this script as ./ortscan.sh hostname type port-end, where type is udp or tcp)
+#                 Invoke this script as ./portscan.sh hostname type port-end, where type is udp or tcp)
 #               
 #                ./portscan.sh 127.0.0.1 tcp 122 2> /dev/null
 #                ./portscan.sh 192.168.0.1 udp 2500 2> /dev/null
@@ -27,7 +27,7 @@
 #  REQUIREMENTS: ---
 #          BUGS: ---
 #         NOTES: Original file: http://oreilly.com/pub/h/5299
-#                Added port-end from $3 to delimite the original script. 
+#                Added port-end from $3 to delimite the original script. RT
 #        AUTHOR: Luke Bonanomi 
 #  ORGANIZATION:
 #       CREATED: 08/06/06
