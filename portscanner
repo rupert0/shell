@@ -17,19 +17,24 @@
 #                though filtering the output through /etc/services to provide labels 
 #                for open ports or running multiple scans in parallel to speed the 
 #                scanning process up would both be neat refinements. 
-#                (invoke this script as ./scriptname hostname type, where type is udp or tcp
+#                
+#                 Invoke this script as ./ortscan.sh hostname type port-end, where type is udp or tcp)
+#               
+#                ./portscan.sh 127.0.0.1 tcp 122 2> /dev/null
+#                ./portscan.sh 192.168.0.1 udp 2500 2> /dev/null
 #
 #       OPTIONS: ---
 #  REQUIREMENTS: ---
 #          BUGS: ---
-#         NOTES: http://oreilly.com/pub/h/5299
+#         NOTES: Original file: http://oreilly.com/pub/h/5299
+#                Added port-end from $3 to delimite the original script. 
 #        AUTHOR: Luke Bonanomi 
 #  ORGANIZATION:
 #       CREATED: 08/06/06
-#      REVISION:  ---
+#      REVISION: 18/12/13
 #===============================================================================
 
-for a in $(yes scan | head -1024)
+for a in $(yes scan | head -$3)
   do
   (( start++ ))
   if [[ -n $(echo '' > /dev/$2/$1/$start && echo "up") ]];
