@@ -1,0 +1,42 @@
+#!/bin/bash -
+#===============================================================================
+#
+#          FILE: portscan.sh
+#
+#         USAGE: ./portscan.sh
+#
+#   DESCRIPTION: Port scanners are like cork-screws. There's never one around when 
+#                you need one, and you generally need it right away. Even when you 
+#                aren't in a hurry many distributions (particularly firewall or 
+#                routing appliances) don't have a C compiler available, making a 
+#                conventional port-scanner impossible.
+#
+#                This hack takes advantage of bash's little-known integral network support in /dev/tcp/hostname 
+#                and /dev/udp/hostname to create a full open TCP/UDP port scanner. 
+#                This version stresses simplicity (and ease of typing) over features, 
+#                though filtering the output through /etc/services to provide labels 
+#                for open ports or running multiple scans in parallel to speed the 
+#                scanning process up would both be neat refinements. 
+#                (invoke this script as ./scriptname hostname type, where type is udp or tcp
+#
+#       OPTIONS: ---
+#  REQUIREMENTS: ---
+#          BUGS: ---
+#         NOTES: http://oreilly.com/pub/h/5299
+#        AUTHOR: Luke Bonanomi 
+#  ORGANIZATION:
+#       CREATED: 08/06/06
+#      REVISION:  ---
+#===============================================================================
+
+for a in $(yes scan | head -1024)
+  do
+  (( start++ ))
+  if [[ -n $(echo '' > /dev/$2/$1/$start && echo "up") ]];
+      then
+      echo "Port $start" >> scan;
+  fi
+done;
+clear
+cat scan;
+rm scan;
